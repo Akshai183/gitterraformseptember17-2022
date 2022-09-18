@@ -1,7 +1,7 @@
 resource "azurerm_virtual_network" "vpc" {
   name                = var.vpc_name
   location            = var.location
-  resource_group_name = var.rg_name
+  resource_group_name = azurerm_resource_group.pranayaakshai.name
   address_space       = [var.vpc_cidr_block]
   dns_servers         = [var.dns1, var.dns2]
   tags = {
@@ -10,13 +10,13 @@ resource "azurerm_virtual_network" "vpc" {
 }
 resource "azurerm_subnet" "subnet1" {
   name                 = var.subnet1_name
-  resource_group_name  = var.rg_name
-  virtual_network_name = var.vpc_name
+  resource_group_name  = azurerm_resource_group.pranayaakshai.name
+  virtual_network_name = azurerm_virtual_network.vpc.name
   address_prefixes     = [var.subnet1_cidr]
 }
 resource "azurerm_subnet" "subnet2" {
   name                 = var.subnet2_name
-  resource_group_name  = var.rg_name
-  virtual_network_name = var.vpc_name
+  resource_group_name  = azurerm_resource_group.pranayaakshai.name
+  virtual_network_name = azurerm_virtual_network.vpc.name
   address_prefixes     = [var.subnet2_cidr]
 }
