@@ -32,3 +32,9 @@ resource "azurerm_subnet" "subnet4" {
   virtual_network_name = azurerm_virtual_network.vpc.name
   address_prefixes     = ["10.28.2.0/24"]
 }
+resource "azurerm_subnet" "subnet5" {
+  name                 = "subnet5"
+  resource_group_name  = azurerm_resource_group.pranayaakshai.name
+  virtual_network_name = azurerm_virtual_network.vpc.name
+  address_prefixes     = ["10.0.3.0/24"]
+}
